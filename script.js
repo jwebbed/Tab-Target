@@ -105,5 +105,5 @@ addUI = function() {
 }
 
 removeUI = function() {
-	$('.tabTargetInput').remove();
+	$('#tab_target_text_box').remove();
 }
