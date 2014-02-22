@@ -51,14 +51,24 @@ var pressedKeys = {0: false, 1: false, 2: false, 3: false}; //alt, t, tab, enter
 var srchLinks = false;
 
 
+// key constants
+var ALT = 18,
+	T = 84,
+	TAB = 9,
+	ENTER = 13;
+
 function downKey(e) {
+	if (e.keyCode == ENTER) {
+		
+	}
+
 	//alt key is pressed
-	if(e.keyCode == 18) {
+	if(e.keyCode == ALT) {
 		pressedKeys[0] = true;
 	}
 
 	//t key is pressed
-	if(e.keyCode == 84) {
+	if(e.keyCode == T) {
 		pressedKeys[1] = true;
 	}
 
@@ -81,7 +91,7 @@ function downKey(e) {
 }
 
 function upKey(e) {
-	if(e.keyCode == 9) {
+	if(e.keyCode == TAB) {
 		console.log("keyup: move to next link");
 	}
 }
@@ -93,5 +103,5 @@ addUI = function() {
 }
 
 removeUI = function() {
-	$('.body').removeClass('tabTargetInput');
+	$('.tabTargetInput').remove();
 }
