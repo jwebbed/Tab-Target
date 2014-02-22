@@ -23,10 +23,5 @@
       "run_at" : "document_idle",
       "all_frames" : true
     }
-  ],
-
-	"page_action":{
-		"default_icon": "icon.png",
-		"default_title": "Tab Target"
-	}
+  ]
 }
