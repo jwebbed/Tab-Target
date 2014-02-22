@@ -1,4 +1,6 @@
-class Target
-	constructor: (ref) ->
-	@text = ref.text
-	@ref = ref
+class targets
+	constructor: (@refs) ->
+
+	@highlight: (tar) ->
+		@refs.highlight(tar)
+
