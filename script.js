@@ -68,6 +68,11 @@ function downKey(e) {
 		pressedKeys['ALT'] = true;
 	}
 
+	if(e.keyCode == ESC) {
+		removeUI();
+	}
+
+
 	//t key is pressed
 	if(e.keyCode == T) {
 		pressedKeys['T'] = true;
@@ -100,8 +105,9 @@ function upKey(e) {
 
 addUI = function() {
 	$.get(chrome.extension.getURL('search_bar.html'), function(data) {
-    $($.parseHTML(data)).appendTo('body');
-});
+    	$($.parseHTML(data)).appendTo('body');
+    	$('#tab_target_search').focus();
+	});
 }
 
 removeUI = function() {
