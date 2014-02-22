@@ -18,7 +18,7 @@
         "http://*/*",
         "https://*/*"
       ],
-      "js" : ["jquery.js", "script.js"],
+      "js" : ["jquery.js", "script.js", "jquery.highlight-4.js"],
       "css" : ["tt_style.css"],
       "run_at" : "document_idle",
       "all_frames" : true
