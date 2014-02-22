@@ -5,3 +5,11 @@
 .tt_chosen span.highlight {
 	background-color: #B0B0B0;
 }
+
+.tabTargetInput {
+	background-color: #a1a1a1;
+	opacity: .5;
+	width: 200px;
+	margin-left: 40px;
+	margin-bottom: 40px;
+}

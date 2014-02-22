@@ -2,6 +2,9 @@ var dict = [];
 var all_links;
 
 $(document).ready(function () {
+	window.addEventListener("keydown", downKey, true);
+	window.addEventListener("keyup", upKey, true);
+
 	all_links = $('a');
 	
 	for (var i = 0; i < all_links.length; i ++ ) {
@@ -42,4 +45,53 @@ function switchChosen(curr_index, matches) {
 function clickLink() {
 	// click currently selected link
 	$('tt_chosen')[0].click();
+}
+
+var pressedKeys = {0: false, 1: false, 2: false, 3: false}; //alt, t, tab, enter
+var srchLinks = false;
+
+
+function downKey(e) {
+	//alt key is pressed
+	if(e.keyCode == 18) {
+		pressedKeys[0] = true;
+	}
+
+	//t key is pressed
+	if(e.keyCode == 84) {
+		pressedKeys[1] = true;
+	}
+
+	var both = (pressedKeys[0] && pressedKeys[1]);
+	var neither = (!pressedKeys[0] && !pressedKeys[1]);
+	if(both || neither) {
+		srchLinks = !srchLinks;
+		pressedKeys[0] = !pressedKeys[0];
+		pressedKeys[1] = !pressedKeys[1];
+
+		if(srchLinks) {
+			addUI();
+			console.log("open things");
+		}
+		else {
+			removeUI();
+			console.log("close things");
+		}
+	}
+}
+
+function keyUp(e) {
+	if(e.keyCode == 9) {
+		console.log("keyup: move to next link");
+	}
+}
+
+addUI = function() {
+	$('.body').append(
+		'<div class="tabTargetInput">> <input type="text"> </input> </div>'
+		);
+}
+
+removeUI = function() {
+	$('.body').removeClass('tabTargetInput');
 }
