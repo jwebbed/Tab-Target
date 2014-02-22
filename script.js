@@ -80,7 +80,7 @@ function downKey(e) {
 	}
 }
 
-function keyUp(e) {
+function upKey(e) {
 	if(e.keyCode == 9) {
 		console.log("keyup: move to next link");
 	}
