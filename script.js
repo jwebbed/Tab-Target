@@ -47,7 +47,7 @@ function clickLink() {
 	$('tt_chosen')[0].click();
 }
 
-var pressedKeys = {0: false, 1: false, 2: false, 3: false}; //alt, t, tab, enter
+var pressedKeys = {ALT: false, T: false, TAB: false, ENTER: false, P: false}; //alt, t, tab, enter
 var srchLinks = false;
 
 
@@ -64,20 +64,20 @@ function downKey(e) {
 
 	//alt key is pressed
 	if(e.keyCode == ALT) {
-		pressedKeys[0] = true;
+		pressedKeys['ALT'] = true;
 	}
 
 	//t key is pressed
 	if(e.keyCode == T) {
-		pressedKeys[1] = true;
+		pressedKeys['T'] = true;
 	}
 
-	var both = (pressedKeys[0] && pressedKeys[1]);
-	var neither = (!pressedKeys[0] && !pressedKeys[1]);
+	var both = (pressedKeys['ALT'] && pressedKeys[1]);
+	var neither = (!pressedKeys['T'] && !pressedKeys[1]);
 	if(both || neither) {
 		srchLinks = !srchLinks;
-		pressedKeys[0] = !pressedKeys[0];
-		pressedKeys[1] = !pressedKeys[1];
+		pressedKeys['ALT'] = !pressedKeys['ALT'];
+		pressedKeys['T'] = !pressedKeys['T'];
 
 		if(srchLinks) {
 			addUI();
