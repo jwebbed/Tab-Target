@@ -1,4 +1,6 @@
-var dict = [];
+var dict = [],
+	matches, 
+	chosen_index;
 var all_links;
 
 $(document).ready(function () {
@@ -16,8 +18,8 @@ $(document).ready(function () {
 		}
 	}
 
-	var matches = parseDict('wiki');
-	var chosen_index = 0;
+	matches = parseDict('wiki');
+	chosen_index = 0;
 	$(matches[chosen_index]).addClass('tt_chosen');
 
 });
@@ -97,6 +99,7 @@ function downKey(e) {
 
 }
 
+
 function upKey(e) {
 	if(e.keyCode == TAB) {
 		console.log("keyup: move to next link");
@@ -107,6 +110,17 @@ addUI = function() {
 	$.get(chrome.extension.getURL('search_bar.html'), function(data) {
     	$($.parseHTML(data)).appendTo('body');
     	$('#tab_target_search').focus();
+    	$('#tab_target_search').keydown(function() {
+    		// remove previously chosen
+    		$('.tt_chosen').removeClass('tt_chosen');
+
+    		matches = parseDict( $('#tab_target_search').val() );
+
+    		//choose the first
+    		chosen_index = 0;
+			$(matches[chosen_index]).addClass('tt_chosen');
+  			
+		});
 	});
 }
 
