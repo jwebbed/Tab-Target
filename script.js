@@ -97,9 +97,9 @@ function upKey(e) {
 }
 
 addUI = function() {
-	$('.body').append(
-		'<div class="tabTargetInput">> <input type="text"> </input> </div>'
-		);
+	$.get(chrome.extension.getURL('search_bar.html'), function(data) {
+    $($.parseHTML(data)).appendTo('body');
+});
 }
 
 removeUI = function() {
