@@ -55,7 +55,8 @@ var srchLinks = false;
 var ALT = 18,
 	T = 84,
 	TAB = 9,
-	ENTER = 13;
+	ENTER = 13,
+	ESC = 27;
 
 function downKey(e) {
 	if (e.keyCode == ENTER) {
@@ -88,6 +89,7 @@ function downKey(e) {
 			console.log("close things");
 		}
 	}
+
 }
 
 function upKey(e) {
