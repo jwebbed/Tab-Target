@@ -128,11 +128,11 @@ header {
     }
 
     #saved li:nth-child(odd) {
-      background: #FA5858;
+      background: #C9CACA;
     }
 
     #saved li:nth-child(even) {
-      background: #F03F35;
+      background: #E4E5E5;
     }
 
     .first {
@@ -158,12 +158,11 @@ header {
       }
 
   #addsite {
-    background: #cee6e9;
-    border-top: 1px solid #d0112b;
+    background: #C7D3D2;
     padding: 2px 5px;
   }
 
-    #addside input {
+    #addsite input {
       background: transparent;
       border: 0;
       outline: 0;
@@ -179,7 +178,7 @@ header {
 
     #save {
       background: transparent;
-      border: 1px solid #7ec9d2;
+      border: 1px solid #d0112b;
       border-radius: 4px;
       color: #666;
       cursor: pointer;
@@ -189,7 +188,7 @@ header {
     }
 
       #save:hover {
-        background: #7ec9d2;
+        background: #d0112b;
         color: #eee;
       }
 
