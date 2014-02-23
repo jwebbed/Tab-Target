@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 	all_links = $('a');
 	
-	for (var i = 0; i < all_links.length; i ++ ) {
+	for (var i = 0; i < all_links.length; i++ ) {
 		if (all_links[i].innerText.length > 0) {
 			dict.push({
 				key: all_links[i].innerText.toLowerCase(),
@@ -83,7 +83,8 @@ function upKey(e) {
 	//leave link search
 	if(e.keyCode == ESC) {
 		removeUI();
-		console.log("leave link search");
+		$('.tt_chosen').removeClass('tt_chosen');
+		$('a').removeHighlight();
 	}
 
 	// enter pressed + in link searching state
