@@ -1,6 +1,7 @@
 @font-face { font-family: Lato; src: url("fonts/Lato-Regular.ttf"); }
 @font-face { font-family: Lato-Light; src: url("fonts/Lato-Light.ttf"); }
 @font-face { font-family: "Roboto Slab"; src: url("fonts/RobotoSlab-Light.ttf"); }
+@font-face { font-family: "Nevis"; src: url("fonts/nevis.ttf"); }
 
 * {
   font: 1em/1.2em Lato, Helvetica, "Segoe UI", Verdana, Arial, sans-serif;
@@ -41,27 +42,27 @@ a {
   }
 
 #content {
-  background: #FFB0AC;
+  background: #CEDBDA;
   margin: 35px auto;
   width: 520px;
 }
 
 header {
   background: #fff;
-  border-bottom: 1px solid #9bd7de;
+  border-bottom: 1px solid #d0112b;
   padding: 30px 20px;
   text-align: center;
 }
 
   #logo {
     background: url(img/logo-64.png) no-repeat 0 10px;
-    color: #37c3e4;
-    font: 2.6em "Roboto Slab";
-    padding: 8px 0 8px 68px;
+    color: #000000;
+    font: 2.6em "Nevis";
+    padding: 18px 20px 20px 68px;
   }
 
 #settings {
-  border-bottom: 1px solid #9bd7de;
+  border-bottom: 1px solid #d0112b;
 }
 
   .option {
@@ -158,7 +159,7 @@ header {
 
   #addsite {
     background: #cee6e9;
-    border-top: 1px solid #7ec9d2;
+    border-top: 1px solid #d0112b;
     padding: 2px 5px;
   }
 
@@ -197,7 +198,7 @@ article, aside {
 }
 
 article {
-  border-bottom: 1px solid #9bd7de;
+  border-bottom: 1px solid #d0112b;
 }
 
   #devs, #devs a {
