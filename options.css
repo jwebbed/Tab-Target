@@ -157,13 +157,13 @@ header {
         opacity: 1;
       }
 
-  #addpass {
+  #addsite {
     background: #cee6e9;
     border-top: 1px solid #7ec9d2;
     padding: 2px 5px;
   }
 
-    #addpass input {
+    #addside input {
       background: transparent;
       border: 0;
       outline: 0;
