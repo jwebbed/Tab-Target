@@ -1,3 +1,4 @@
+var dict = [], matches, chosen_index;
 var dict = [],
 	matches, 
 	chosen_index;
@@ -49,9 +50,7 @@ function clickLink() {
 	$('tt_chosen')[0].click();
 }
 
-var pressedKeys = {ALT: false, T: false, TAB: false, ENTER: false, P: false}; //alt, t, tab, enter
-var srchLinks = false;
-
+var pressedKeys = {ALT: false, T: false};
 
 // key constants
 var ALT = 18,
@@ -61,48 +60,49 @@ var ALT = 18,
 	ESC = 27;
 
 function downKey(e) {
-	if (e.keyCode == ENTER) {
 		
-	}
-
 	//alt key is pressed
 	if(e.keyCode == ALT) {
 		pressedKeys['ALT'] = true;
 	}
-
-	if(e.keyCode == ESC) {
-		removeUI();
-	}
-
 
 	//t key is pressed
 	if(e.keyCode == T) {
 		pressedKeys['T'] = true;
 	}
 
-	var both = (pressedKeys['ALT'] && pressedKeys[1]);
-	var neither = (!pressedKeys['T'] && !pressedKeys[1]);
-	if(both || neither) {
-		srchLinks = !srchLinks;
-		pressedKeys['ALT'] = !pressedKeys['ALT'];
-		pressedKeys['T'] = !pressedKeys['T'];
-
-		if(srchLinks) {
+	//if both, open link search
+	var both = (pressedKeys['ALT'] && pressedKeys['T']);
+	if(both) {
 			addUI();
-			console.log("open things");
+		console.log("open link search");
 		}
-		else {
-			removeUI();
-			console.log("close things");
 		}
-	}
 
+function upKey(e) {
+	//set Alt and T to false in pressedKeys
+	if(e.keyCode == ALT || e.keyCode == T) {
+		pressedKeys['ALT'] = false;
+		pressedKeys['T'] = false;
 }
 
+	//move to next link
 
 function upKey(e) {
 	if(e.keyCode == TAB) {
 		console.log("keyup: move to next link");
+	}
+
+	//leave link search
+	if(e.keyCode == ESC) {
+		removeUI();
+		console.log("leave link search");
+}
+
+	//choose link
+	if (e.keyCode == ENTER) {
+		chooseLink();
+		console.log("open link in new tab");
 	}
 }
 
@@ -126,4 +126,8 @@ addUI = function() {
 
 removeUI = function() {
 	$('#tab_target_text_box').remove();
+}
+
+chooseLink = function() {
+	console.log("choose link");
 }
