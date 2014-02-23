@@ -6,6 +6,6 @@ TabTarget is a Chrome extension that allows you to browse the internet by keyboa
 Get it at the [Chrome Store](https://chrome.google.com/webstore/detail/tab-target/khpplajihokmomldlobfmamodhacphca).
 
 
-![Options page screenshot](/screenshots/ss4.png)
+![Options page screenshot](/screenshots/ss3.png)
 
 ![Running extension screenshot](/screenshots/ss5.png)
