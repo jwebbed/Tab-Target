@@ -11,7 +11,7 @@
 }
 
 body {
-  background: #F03F35;
+  background: #d0112b;
   color: #191f21;
   font: 0.95em/1.4em Lato-Light;
   margin: 0;
@@ -41,7 +41,7 @@ a {
   }
 
 #content {
-  background: #cde8f3;
+  background: #FFB0AC;
   margin: 35px auto;
   width: 520px;
 }
@@ -54,10 +54,10 @@ header {
 }
 
   #logo {
-    background: url(img/icon48.png) no-repeat 0 10px;
+    background: url(img/logo-64.png) no-repeat 0 10px;
     color: #37c3e4;
     font: 2.6em "Roboto Slab";
-    padding: 8px 0 8px 58px;
+    padding: 8px 0 8px 68px;
   }
 
 #settings {
@@ -127,11 +127,11 @@ header {
     }
 
     #saved li:nth-child(odd) {
-      background: #9bd7de;
+      background: #FA5858;
     }
 
     #saved li:nth-child(even) {
-      background: #e3f2f9;
+      background: #F03F35;
     }
 
     .first {

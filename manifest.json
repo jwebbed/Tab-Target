@@ -23,6 +23,10 @@
       "css" : ["tt_style.css", "highlight.css"],
       "run_at" : "document_idle",
       "all_frames" : true
-    }
-  ]
+    }],
+    "icons": {
+    "16": "img/logo16.png",
+    "48": "img/logo48.png",
+    "128": "img/logo128.png"
+  }
 }
