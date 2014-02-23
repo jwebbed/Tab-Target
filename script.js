@@ -2,9 +2,6 @@ var dict = [], matches = [], chosen_index = 0;
 var all_links;
 var srchBar = false;
 
-//keep track of whether both alt and t are pressed
-var pressedKeys = {ALT: false, T: false};
-
 // key constants
 var ALT = 18,
 	T = 84,
@@ -12,7 +9,7 @@ var ALT = 18,
 	ENTER = 13,
 	ESC = 27;
 
-
+/* run when page is open */
 $(document).ready(function () {
 	window.addEventListener("keydown", downKey, true);
 	window.addEventListener("keyup", upKey, true);
@@ -29,7 +26,7 @@ $(document).ready(function () {
 	}
 });
 
-
+/* update matches dictionary */
 function parseDict(target_text) {
 	var currmatches = [];
 	target_text = target_text.toLowerCase();
@@ -42,40 +39,23 @@ function parseDict(target_text) {
 	return currmatches;
 }
 
-function switchChosen(curr_index, matches) {
-	$('.tt_chosen').removeClass('tt_chosen');
-	chosen_index += 1;
-	$(matches[chosen_index]).addClass('tt_chosen');
-	return chosen_index;
-}
-
+/* click currently selected link */
 function clickLink() {
-	// click currently selected link
 	$('.tt_chosen')[0].click();
 }
 
+/* keydown listener */
 function downKey(e) {
-		
-	//alt key is pressed
-	if(e.keyCode == ALT) {
-		pressedKeys['ALT'] = true;
-	}
-
-	//t key is pressed
-	if(e.keyCode == T) {
-		pressedKeys['T'] = true;
-	}
-	//if both, open link search
-	var both = (pressedKeys['ALT'] && pressedKeys['T']);
-	if(both && !srchBar) {
+	//alt + T
+	if(e.altKey && e.keyCode === T && !srchBar) {
 		addUI();
 		console.log("open link search");
 	}
 
-	//tab
-	if(e.keyCode == TAB) {
+	//tab moves forward
+	if(!e.shiftKey && e.keyCode == TAB && $('.tt_redDot').length > 0) {
 		e.preventDefault();
-		
+
     	//remove old chosen and replace
     	$(matches[chosen_index]).removeClass('tt_chosen');
     	if(chosen_index < matches.length - 1) {
@@ -87,28 +67,40 @@ function downKey(e) {
     	
     	updateChosenMatch();
 	}
+
+	//shift + tab moves backward
+	if(e.shiftKey && e.keyCode == TAB && srchBar) {
+		e.preventDefault();
+
+		console.log("shifting backwards.");
+		//remove old chosen and replace
+    	$(matches[chosen_index]).removeClass('tt_chosen');
+    	if(chosen_index > 0) {
+    		chosen_index -= 1;
+    	}
+    	else{
+    		chosen_index = matches.length - 1;
+    	}
+    	
+    	updateChosenMatch();
+	}
 }
 
+/* keyup listener */
 function upKey(e) {
-	//set Alt and T to false in pressedKeys
-	if(e.keyCode == ALT || e.keyCode == T) {
-		pressedKeys['ALT'] = false;
-		pressedKeys['T'] = false;
-	}
-
 	//leave link search
 	if(e.keyCode == ESC) {
 		removeUI();
-		$('.tt_chosen').removeClass('tt_chosen');
-		$('a').removeHighlight();
 	}
 
 	// enter pressed + in link searching state
-	if (e.keyCode == ENTER && $('.tt_redDot').length > 0) {
+	if (e.keyCode == ENTER && srchBar) {
 		clickLink();
+		removeUI();
 	}
 }
 
+/* create link search */
 addUI = function() {
 	srchBar = true;
 	$.get(chrome.extension.getURL('search_bar.html'), function(data) {
@@ -126,12 +118,16 @@ addUI = function() {
 	});
 }
 
+/* remove link search */
 removeUI = function() {
 	srchBar = false;
 	$('#tab_target_text_box').remove();
 	$('.tt_redDot').remove();
+	$('.tt_chosen').removeClass('tt_chosen');
+	$('a').removeHighlight();
 }
 
+/* update chosen match */
 updateChosenMatch = function() {
     $(matches[chosen_index]).addClass('tt_chosen');
 	$('.tt_chosen span.tt_highlight').css('background-color', '#B0B0B0');
