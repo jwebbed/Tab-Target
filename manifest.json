@@ -4,12 +4,13 @@
 	"name": "Tab Target",
 	"description": "Lets you browse the web with only a keyboard.",
 	"version": "1.0",
-
+	"options_page": "options.html",
 	"permissions": [
 		"tabs",
 		"http://*/*",
 		"https://*/*",
-		"http://localhost/"
+		"http://localhost/",
+		"storage", "contextMenus"
 	],
 	"web_accessible_resources": ["search_bar.html"],
 	"content_scripts" : [
