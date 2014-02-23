@@ -135,7 +135,6 @@ header {
     }
 
     .first {
-      border-right: 1px solid #cde8f3;
       display: inline-block;
       margin-right: 10px;
       width: 140px;
