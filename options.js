@@ -31,15 +31,22 @@ $("#addsite").keydown(function (e) {
 
 $("#save").click(function () {
   var site= $("#site").val();
+  var re = new RegExp("^(https?:\/\/)+([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$");
 
-  if (site == "") {
-    alert('Please fill in the field!');
+  if (!re.test(site)) {
+    alert('Please enter a valid URL');
     return;
   }
 
   arr.push(site);
 
-  $("#saved").append("<li><span class='first'>" + site + "</span><div class='del'></div></li>");
+  $("#saved").append("<li id='" + (arr.length - 1) + "''><span class='first'>" + site + "</span><div class='del'></div></li>");
+  $('#' + (arr.length - 1) + ' .del').click(function() {
+    $(this).parent().css("display", "none");
+    var pos = arr.indexOf(i);
+    if (~arr) arr.splice(pos, 1);
+    storage.set({'pass': arr});
+  });
   storage.set({'sites': arr});
 
   $("#site").val("");
