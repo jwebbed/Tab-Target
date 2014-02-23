@@ -1,8 +1,17 @@
 var dict = [], matches, chosen_index;
-var dict = [],
-	matches, 
-	chosen_index;
 var all_links;
+var srchBar = false;
+
+//keep track of whether both alt and t are pressed
+var pressedKeys = {ALT: false, T: false};
+
+// key constants
+var ALT = 18,
+	T = 84,
+	TAB = 9,
+	ENTER = 13,
+	ESC = 27;
+
 
 $(document).ready(function () {
 	window.addEventListener("keydown", downKey, true);
@@ -50,15 +59,6 @@ function clickLink() {
 	$('tt_chosen')[0].click();
 }
 
-var pressedKeys = {ALT: false, T: false};
-
-// key constants
-var ALT = 18,
-	T = 84,
-	TAB = 9,
-	ENTER = 13,
-	ESC = 27;
-
 function downKey(e) {
 		
 	//alt key is pressed
@@ -73,22 +73,20 @@ function downKey(e) {
 
 	//if both, open link search
 	var both = (pressedKeys['ALT'] && pressedKeys['T']);
-	if(both) {
-			addUI();
+	if(both && !srchBar) {
+		addUI();
 		console.log("open link search");
-		}
-		}
+	}
+}
 
 function upKey(e) {
 	//set Alt and T to false in pressedKeys
 	if(e.keyCode == ALT || e.keyCode == T) {
 		pressedKeys['ALT'] = false;
 		pressedKeys['T'] = false;
-}
+	}
 
 	//move to next link
-
-function upKey(e) {
 	if(e.keyCode == TAB) {
 		console.log("keyup: move to next link");
 	}
@@ -97,16 +95,17 @@ function upKey(e) {
 	if(e.keyCode == ESC) {
 		removeUI();
 		console.log("leave link search");
-}
+	}
 
 	//choose link
 	if (e.keyCode == ENTER) {
-		chooseLink();
+		clickLink();
 		console.log("open link in new tab");
 	}
 }
 
 addUI = function() {
+	srchBar = true;
 	$.get(chrome.extension.getURL('search_bar.html'), function(data) {
     	$($.parseHTML(data)).appendTo('body');
     	$('#tab_target_search').focus();
@@ -125,9 +124,6 @@ addUI = function() {
 }
 
 removeUI = function() {
+	srchBar = false;
 	$('#tab_target_text_box').remove();
-}
-
-chooseLink = function() {
-	console.log("choose link");
 }
