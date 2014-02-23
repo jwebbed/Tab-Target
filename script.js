@@ -109,6 +109,9 @@ addUI = function() {
     		//choose the first
     		chosen_index = 0;
 			$(matches[chosen_index]).addClass('tt_chosen');
+			$('.tt_chosen span.tt_highlight').css('background-color', '#B0B0B0');
+			$('.tt_redDot').css('top' , $('.tt_chosen').offset().top + 3);
+			$('.tt_redDot').css('left' , $('.tt_chosen').offset().left - 15);
   			
 		});
 	});
