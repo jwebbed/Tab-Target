@@ -51,7 +51,7 @@ function switchChosen(curr_index, matches) {
 
 function clickLink() {
 	// click currently selected link
-	$('tt_chosen')[0].click();
+	$('.tt_chosen')[0].click();
 }
 
 function downKey(e) {
@@ -65,7 +65,6 @@ function downKey(e) {
 	if(e.keyCode == T) {
 		pressedKeys['T'] = true;
 	}
-
 	//if both, open link search
 	var both = (pressedKeys['ALT'] && pressedKeys['T']);
 	if(both && !srchBar) {
@@ -87,10 +86,9 @@ function upKey(e) {
 		console.log("leave link search");
 	}
 
-	//choose link
-	if (e.keyCode == ENTER) {
+	// enter pressed + in link searching state
+	if (e.keyCode == ENTER && $('.tt_redDot').length > 0) {
 		clickLink();
-		console.log("open link in new tab");
 	}
 }
 
@@ -112,7 +110,6 @@ addUI = function() {
 			$('.tt_chosen span.tt_highlight').css('background-color', '#B0B0B0');
 			$('.tt_redDot').css('top' , $('.tt_chosen').offset().top + 3);
 			$('.tt_redDot').css('left' , $('.tt_chosen').offset().left - 15);
-  			
 		});
 	});
 }
@@ -120,4 +117,5 @@ addUI = function() {
 removeUI = function() {
 	srchBar = false;
 	$('#tab_target_text_box').remove();
+	$('.tt_redDot').remove();
 }
