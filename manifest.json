@@ -10,7 +10,7 @@
 		"http://*/*",
 		"https://*/*",
 		"http://localhost/",
-		"storage", "contextMenus"
+		"storage"
 	],
 	"web_accessible_resources": ["search_bar.html"],
 	"content_scripts" : [

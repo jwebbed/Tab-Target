@@ -10,7 +10,7 @@ function loadSettings() {
       arr = items['sites'];
       for (i = 0; i < arr.length; i++) {
         $("#saved").append("<li id='" + i + "'><span class='first'>" + arr[i]
-                            + "<div class='del'></div></li>");
+                            + "</span><div class='del'></div></li>");
         $('#' + i + ' .del').click(function () {
           $(this).parent().css("display", "none");
           var pos = arr.indexOf(i);
@@ -22,6 +22,12 @@ function loadSettings() {
   });
 }
 
+$("#addsite").keydown(function (e) {
+  if (e.which == 13) {
+    $("#save").click();
+    $("#site").focus();
+  }
+});
 
 $("#save").click(function () {
   var site= $("#site").val();
@@ -33,7 +39,7 @@ $("#save").click(function () {
 
   arr.push(site);
 
-  $("#saved").append("<li><span class='first'>" + site + "</span></li>");
+  $("#saved").append("<li><span class='first'>" + site + "</span><div class='del'></div></li>");
   storage.set({'sites': arr});
 
   $("#site").val("");
