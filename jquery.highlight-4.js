@@ -21,7 +21,7 @@ jQuery.fn.highlight = function(pat) {
    var pos = node.data.toUpperCase().indexOf(pat);
    if (pos >= 0) {
     var spannode = document.createElement('span');
-    spannode.className = 'highlight';
+    spannode.className = 'tt_highlight';
     var middlebit = node.splitText(pos);
     var endbit = middlebit.splitText(pat.length);
     var middleclone = middlebit.cloneNode(true);
@@ -31,6 +31,7 @@ jQuery.fn.highlight = function(pat) {
    }
   }
   else if (node.nodeType == 1 && node.childNodes && !/(script|style)/i.test(node.tagName)) {
+   node.normalize();
    for (var i = 0; i < node.childNodes.length; ++i) {
     i += innerHighlight(node.childNodes[i], pat);
    }
@@ -43,5 +44,10 @@ jQuery.fn.highlight = function(pat) {
 };
 
 jQuery.fn.removeHighlight = function() {
-  $('.highlight').removeClass('highlight');
+  var highlighted  = $('.tt_highlight');
+
+  for (var i = 0; i < highlighted.length; i++) {
+    $(highlighted[i]).before($(highlighted[i]).text());
+    $(highlighted[i]).remove();
+  }
 };

@@ -1,4 +1,4 @@
-var dict = [], matches, chosen_index;
+var dict = [], matches = [], chosen_index;
 var all_links;
 var srchBar = false;
 
@@ -27,24 +27,19 @@ $(document).ready(function () {
 			});
 		}
 	}
-
-	matches = parseDict('wiki');
-	chosen_index = 0;
-	$(matches[chosen_index]).addClass('tt_chosen');
-
 });
 
 
 function parseDict(target_text) {
-	var matches = [];
+	var currmatches = [];
 	target_text = target_text.toLowerCase();
 	for (var i = 0; i < dict.length; i ++ ) {
 		if (dict[i].key.indexOf(target_text) != -1) {
 			$(dict[i].value).highlight(target_text);
-			matches.push(dict[i].value);
+			currmatches.push(dict[i].value);
 		}
 	}
-	return matches;
+	return currmatches;
 }
 
 function switchChosen(curr_index, matches) {
@@ -86,11 +81,6 @@ function upKey(e) {
 		pressedKeys['T'] = false;
 	}
 
-	//move to next link
-	if(e.keyCode == TAB) {
-		console.log("keyup: move to next link");
-	}
-
 	//leave link search
 	if(e.keyCode == ESC) {
 		removeUI();
@@ -109,9 +99,10 @@ addUI = function() {
 	$.get(chrome.extension.getURL('search_bar.html'), function(data) {
     	$($.parseHTML(data)).appendTo('body');
     	$('#tab_target_search').focus();
-    	$('#tab_target_search').keydown(function() {
+    	$('#tab_target_search').keyup(function() {
     		// remove previously chosen
     		$('.tt_chosen').removeClass('tt_chosen');
+    		$('a').removeHighlight();
 
     		matches = parseDict( $('#tab_target_search').val() );
 
