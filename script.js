@@ -1,4 +1,4 @@
-var dict = [], matches = [], chosen_index;
+var dict = [], matches = [], chosen_index = 0;
 var all_links;
 var srchBar = false;
 
@@ -71,6 +71,22 @@ function downKey(e) {
 		addUI();
 		console.log("open link search");
 	}
+
+	//tab
+	if(e.keyCode == TAB) {
+		e.preventDefault();
+		
+    	//remove old chosen and replace
+    	$(matches[chosen_index]).removeClass('tt_chosen');
+    	if(chosen_index < matches.length - 1) {
+    		chosen_index += 1;
+    	}
+    	else{
+    		chosen_index = 0;
+    	}
+    	
+    	updateChosenMatch();
+	}
 }
 
 function upKey(e) {
@@ -105,12 +121,7 @@ addUI = function() {
 
     		matches = parseDict( $('#tab_target_search').val() );
 
-    		//choose the first
-    		chosen_index = 0;
-			$(matches[chosen_index]).addClass('tt_chosen');
-			$('.tt_chosen span.tt_highlight').css('background-color', '#B0B0B0');
-			$('.tt_redDot').css('top' , $('.tt_chosen').offset().top + ($('.tt_chosen').height())/2 - 5);
-			$('.tt_redDot').css('left' , $('.tt_chosen').offset().left - 15);
+    		updateChosenMatch();
 		});
 	});
 }
@@ -119,4 +130,11 @@ removeUI = function() {
 	srchBar = false;
 	$('#tab_target_text_box').remove();
 	$('.tt_redDot').remove();
+}
+
+updateChosenMatch = function() {
+    $(matches[chosen_index]).addClass('tt_chosen');
+	$('.tt_chosen span.tt_highlight').css('background-color', '#B0B0B0');
+	$('.tt_redDot').css('top' , $('.tt_chosen').offset().top + ($('.tt_chosen').height())/2 - 5);
+	$('.tt_redDot').css('left' , $('.tt_chosen').offset().left - 15);
 }
